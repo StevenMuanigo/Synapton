@@ -88,3 +88,7 @@ The application can be configured using the `config.yaml` file or environment va
 ## License
 
 MIT License - For educational and research purposes
+
+DEMO: https://synaptron.netlify.app/#api
+
+Not: The Ai is simulation version for that can be not working good
