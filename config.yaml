@@ -1,0 +1,37 @@
+# Synaptron Configuration
+
+server:
+  host: "127.0.0.1"
+  port: 8080
+  workers: 4
+
+model:
+  cache_dir: "./models_cache"
+  default_model: "bert-base-uncased"
+  max_input_length: 512
+  auto_download: true
+
+device:
+  preferred: "cpu"
+  auto_select: true
+
+backend:
+  openvino: false
+  tensorrt: false
+  onnx_runtime: true
+  auto_select: true
+
+cache:
+  enabled: true
+  max_size: 1000
+  ttl_seconds: 3600
+
+batch:
+  enabled: true
+  max_batch_size: 32
+  timeout_ms: 100
+
+monitoring:
+  tracing: true
+  metrics: true
+  metrics_endpoint: "/metrics"
