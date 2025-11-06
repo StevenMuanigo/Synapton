@@ -1,0 +1,3 @@
+@echo off
+echo Starting Synaptron server...
+cargo run --release
