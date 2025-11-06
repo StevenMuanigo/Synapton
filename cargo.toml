@@ -1,0 +1,87 @@
+[package]
+name = "synaptron"
+version = "0.1.0"
+edition = "2025"
+authors = ["Synaptron Team"]
+description = "High-performance multi-modal inference engine with dynamic model graph and auto-optimization"
+license = "MIT"
+repository = "https://github.com/synaptron/synaptron"
+homepage = "https://github.com/synaptron/synaptron"
+documentation = "https://docs.rs/synaptron"
+readme = "README.md"
+keywords = ["inference", "multi-modal", "ai", "machine-learning", "optimization"]
+categories = ["science", "algorithms"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+log = "0.4"
+
+# Configuration
+config = "0.13"
+
+# HTTP server
+axum = "0.6"
+tower = "0.4"
+tower-http = { version = "0.4", features = ["cors", "trace"] }
+
+# Metrics and monitoring
+metrics = "0.20"
+metrics-exporter-prometheus = "0.12"
+
+# Command line interface
+clap = { version = "4.0", features = ["derive"] }
+
+# Utilities
+parking_lot = "0.12"
+dashmap = "5.4"
+num_cpus = "1.15"
+once_cell = "1.17"
+rand = "0.8"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4"] }
+
+# Model and tokenization
+tokenizers = "0.13"
+candle = "0.1.0"  # For CPU-based inference
+
+# File system operations
+tokio-util = { version = "0.7", features = ["codec"] }
+futures = "0.3"
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.0"
+assert_fs = "1.0"
+
+[features]
+default = []
+openvino = []
+tensorrt = []
+cuda = []
+opencl = []
+
+[[bin]]
+name = "synaptron-server"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
